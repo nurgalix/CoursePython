@@ -9,5 +9,5 @@ print("При вашем броске выпало", die1, "и", die2, "Очко
 input()
  
 """
-Nurgali
+Nurgali - Arsen - Daulet
 """
