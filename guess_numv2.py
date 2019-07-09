@@ -17,7 +17,7 @@ while random_num != num:
         print("Больше...")
     else:
         print("Меньше...")
-    if attempt == 10:
+    if attempt == 6:
         print("You are Loserrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
         break
     attempt += 1
