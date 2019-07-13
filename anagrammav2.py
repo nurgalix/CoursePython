@@ -22,8 +22,7 @@ while guess != correct and guess != "":
     if guess == "!":
         print("Первая буква", correct[0])
         temp += 1
-    if guess != correct and guess != "":
-        print("К сожелею вы ошиблись, попробуйте заново")
+    print("К сожелею вы ошиблись, попробуйте заново")
     guess = input("Попробуйте отгадать исходное слово: ")
     attempt += 1
     if guess == correct:

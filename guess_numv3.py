@@ -27,7 +27,7 @@ if "т" in message:
     print("встречается в вашем тексте.")
 else:
     print("не встречается в вашем тексте.")
-input("\n\nEnter")
+input("\n\nPress Enter, to exit")
 
 
 """

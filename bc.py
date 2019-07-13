@@ -9,4 +9,4 @@ for letter in message:
         new_message += letter
         print("Создана новая строка:", new_message)
 print("\nВот ващ текст с изъятыми гласными буквами:", new_message)
-input()
+input("\n\nPress Enter, to exit")

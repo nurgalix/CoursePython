@@ -22,6 +22,6 @@ while random_num != num:
         break
     attempt += 1
     tries += 1
-input("\n\nPress Enter, to exit")
+input("\n\nPress Enter, to exit!")
 
 
