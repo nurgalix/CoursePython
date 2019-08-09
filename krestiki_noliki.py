@@ -1,3 +1,7 @@
+#Крестики голики  05.08.2019
+#Компьютер играет крестики нолики против пользывателя
+
+#Глобальные константы
 X = "X"
 O = "O"
 EMPTY = " "
@@ -25,7 +29,7 @@ def ask_yes_no(question):
     """Задает вопрос с ответом 'Да' или 'Нет'."""
     response = None
     while response not in ("y", "n"):
-        response = input((question).lower)
+        response = input(question).lower()
     return response
 
 def  ask_number(question, low, high):
@@ -58,9 +62,9 @@ def display_board(board):
     """Отображает игровую доску на экране."""
     print("\n\t", board[0], "|", board[1], "|", board[2])
     print("\t", "---------")
-    print("\n\t", board[3], "|", board[4], "|", board[5])
+    print("\t", board[3], "|", board[4], "|", board[5])
     print("\t", "---------")
-    print("\n\t", board[6], "|", board[7], "|", board[8])
+    print("\t", board[6], "|", board[7], "|", board[8])
 
 def legal_moves(board):
     """Создает список доступных ходов."""
@@ -72,13 +76,13 @@ def legal_moves(board):
 
 def winner(board):
     """Определаяет победилеля в игре."""
-    WAYS_TO_WIN = ((0, 1, 2)
-                   (3, 4, 5)
-                   (6, 7, 8)
-                   (0, 3, 6)
-                   (1, 4, 7)
-                   (2, 5, 8)
-                   (0, 4, 8)
+    WAYS_TO_WIN = ((0, 1, 2),
+                   (3, 4, 5),
+                   (6, 7, 8),
+                   (0, 3, 6),
+                   (1, 4, 7),
+                   (2, 5, 8),
+                   (0, 4, 8),
                    (2, 4, 6))
     for row in WAYS_TO_WIN:
         if board[row[0]] == board[row[1]] == board[row[2]] != EMPTY:
@@ -164,5 +168,27 @@ def main():
             board[move] = computer
         display_board(board)
         turn = next_turn(turn)
-    the_winner = winner[board]
+    the_winner = winner(board)
     congrat_winner(the_winner, computer, human)
+                
+main()
+input("\n\nEnter")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

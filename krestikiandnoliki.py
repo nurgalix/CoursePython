@@ -1,34 +1,33 @@
-X = "X"
-O = "O"
-EMPTY = " "
-TIE = "Ничья"
-NUM_SQUARES = 9
+X = "X" 
+O = "O" 
+EMPTY = " " 
+TIE = "Ничья" 
+NUM_SQUARES = 9 
 
-def display_instruct():
-    """Выводит на экран инструкцию для игрока"""
-    print(
-        """
-        Игра крестики нолики
-        Введи число от 0 до 8.Число однозначно соответстуют полям доски - так, как
-        показано ниже:
-        0 | 1 | 2
-        ---------
-        3 | 4 | 5
-        ---------
-        6 | 7 | 8
-        Приготовься к бою, жалкий челик.\n
-        """
-        )
-
+def display_instruct(): 
+    """Выводит на экран инструкцию для игрока""" 
+    print( 
+    """ 
+    Игра крестики нолики 
+    Введи число от 0 до 8.Число однозначно соответстуют полям доски - так, как 
+    показано ниже: 
+    0 | 1 | 2 
+    —-----— 
+    3 | 4 | 5 
+    —-----— 
+    6 | 7 | 8 
+    Приготовься к бою, жалкий челик.\n 
+    """ 
+    ) 
 
 def ask_yes_no(question):
-    """Задает вопрос с ответом 'Да' или 'Нет'."""
+    """Задает вопрос с ответом Да или Нет"""
     response = None
     while response not in ("y", "n"):
-        response = input((question).lower)
+        response = input(question).lower()
     return response
 
-def  ask_number(question, low, high):
+def ask_number(question, low, high):
     """Просит ввести число из диапазона."""
     response = None
     while response not in range(low, high):
@@ -37,30 +36,31 @@ def  ask_number(question, low, high):
 
 def pieces():
     """Определяет принадлежность первого хода."""
-    go_first = ask_yes_no("Хочешь оставить за собой первый ход? (y/n): ")
+    go_first = ask_yes_no("Хочешь оставить за собой первый ход.(y/n)")
     if go_first == "y":
-        print("\nНу что ж, даю тебе фору: играй крестиками")
+        print("Ну что ж даю тебе фору играй крестиками.")
         human = X
         computer = O
     else:
-        print("\nТвоя удаль тебя погубит... Буду начинать я.")
+        print("Твоя удаль тебя погубит...Буду начинать я.")
         computer = X
         human = O
-    return human, computer
+    return computer, human
+
 def new_board():
-    """Создать новую игровую доску."""
+    """Создает новую игровую доску."""
     board = []
     for square in range(NUM_SQUARES):
         board.append(EMPTY)
     return board
 
 def display_board(board):
-    """Отображает игровую доску на экране."""
+    """Отображет игровую доску на экране."""
     print("\n\t", board[0], "|", board[1], "|", board[2])
     print("\t", "---------")
-    print("\n\t", board[3], "|", board[4], "|", board[5])
+    print("\t", board[3], "|", board[4], "|", board[5])
     print("\t", "---------")
-    print("\n\t", board[6], "|", board[7], "|", board[8])
+    print("\t", board[6], "|", board[7], "|", board[8], "\n")
 
 def legal_moves(board):
     """Создает список доступных ходов."""
@@ -71,15 +71,16 @@ def legal_moves(board):
     return moves
 
 def winner(board):
-    """Определаяет победилеля в игре."""
-    WAYS_TO_WIN = ((0, 1, 2)
-                   (3, 4, 5)
-                   (6, 7, 8)
-                   (0, 3, 6)
-                   (1, 4, 7)
-                   (2, 5, 8)
-                   (0, 4, 8)
+    """Определяет победителя в игре."""
+    WAYS_TO_WIN = ((0, 1, 2),
+                   (3, 4, 5),
+                   (6, 7, 8),
+                   (0, 3, 6),
+                   (1, 4, 7),
+                   (2, 5, 8),
+                   (0, 4, 8),
                    (2, 4, 6))
+    
     for row in WAYS_TO_WIN:
         if board[row[0]] == board[row[1]] == board[row[2]] != EMPTY:
             winner = board[row[0]]
@@ -93,34 +94,34 @@ def human_move(board, human):
     legal = legal_moves(board)
     move = None
     while move not in legal:
-        move = ask_number("Твой ход выбери один из полей (0-8):", 0, NUM_SQUARES)
+        move = ask_number("Твой ход. Выбери одно из полей (0-8):", 0, NUM_SQUARES)
         if move not in legal:
-            print("\nСмешной человек! Это поле уже занято. Выбери другое.\n")
-        print("Ладно...")
-        return move
+            print("\nСмешной человек. Это поле уже занято. Выбери другое.\n")
+    print("Ладно...")
+    return move
 
 def computer_move(board, computer, human):
     """Делает ход за компьютерного противника."""
-    # создадим рабочию копию доски, потому что функция будет менять некоторые значение в списке
+    #Создаем рабочию копию доски, потому что функция будет менять некоторые значение в списке
     board = board[:]
-    #поля от лучшего к худшему
+    #Поля от лучешего к худшему
     BEST_MOVES = (4, 0, 2, 6, 8, 1, 3, 5, 7)
     print("Я выберу поле номер", end=" ")
     for move in legal_moves(board):
         board[move] = computer
-        #Если следующим ходом может победить компьютер, выберем этот ход
+    #Если следующим ходом может победить компьютер, выберем этот ход
         if winner(board) == computer:
             print(move)
             return move
-    #Выполнив проверку, отменим внесенные изменения 111111111111111111
+    # выполнив проверку, отменим внесенные измения
         board[move] = EMPTY
     for move in legal_moves(board):
         board[move] = human
-        #Если следующим ходои победить  человек, блокируем этот ход
+    # если следующим ходом может побердить человек, блокируем этот ход
         if winner(board) == human:
             print(move)
             return move
-        # выполнив проверку отменим измениние
+    # выполнив проверку, отменим внесенные изменения
         board[move] = EMPTY
     # выберем лучшее из доступных полей
     for move in BEST_MOVES:
@@ -138,16 +139,15 @@ def next_turn(turn):
 def congrat_winner(the_winner, computer, human):
     """Поздравляет победителя игры."""
     if the_winner != TIE:
-        print("Три", the_winner, "в ряд!\n")
+        print("Три", the_winner, "в ряд")
     else:
         print("Ничья!\n")
     if the_winner == computer:
-        print("Как я и предсказывал, победа в очередной раз осталось за мной.")
+        print("Как я и предсказывал, победа в очередной раз осталось за мной")
     elif the_winner == human:
         print("О нет этого не может быть! Я проиграллл...")
     elif the_winner == TIE:
         print("Тебе несказонно повезло, дружок ты сумел свести игру вниью.")
-
 
 def main():
     display_instruct()
@@ -164,5 +164,13 @@ def main():
             board[move] = computer
         display_board(board)
         turn = next_turn(turn)
-    the_winner = winner[board]
+    the_winner = winner(board)
     congrat_winner(the_winner, computer, human)
+
+
+main()
+input()
+    
+
+
+
