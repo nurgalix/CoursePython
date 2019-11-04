@@ -35,3 +35,8 @@ try:
     a = 5 / num1
 except ZeroDivisionError:
     print("ДАун нельзя делить на ноль")
+
+
+
+
+

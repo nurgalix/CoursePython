@@ -6,6 +6,12 @@ text.write("This boy has no chill!\n")
 text.write("gege")
 text.close()
 
+text = open("kek.txt", "a+")
+text.write("\nog champions ti9 congrats!")
+text.close()
+
 text =  open("kek.txt", "r")
 print(text.read())
+
 text.close()
+
